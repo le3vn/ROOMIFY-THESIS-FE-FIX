@@ -1,14 +1,12 @@
-import React, { useState, useCallback } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState } from 'react';
 import { WithDefaultLayout } from '../../components/DefautLayout';
 import { Page } from '../../types/Page';
-import { ConfigProvider, Input, Select, Button } from 'antd';
+import { ConfigProvider, Input, Select } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useDebounce } from 'use-debounce';
 import HeaderPage from "@/components/HeaderPage";
-import { useSession } from 'next-auth/react';
-import { User } from 'next-auth';
-import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { BackendApiUrl } from '@/functions/BackendApiUrl';
 import { useSwrFetcherWithAccessToken } from '@/functions/useSwrFetcherWithAccessToken';
@@ -43,24 +41,14 @@ interface RoomList {
 const Dashboard: Page = () => {
     const [search, setSearch] = useState<string>('');
     const [searchDebounce] = useDebounce(search, 500);
-    const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [selectedBuilding, setSelectedBuilding] = useState<number | null>(null);
     const [selectedRoom, setSelectedRoom] = useState<number | null>(null);
 
     const swrFetcher = useSwrFetcherWithAccessToken();
-    const { data: session } = useSession();
     const { data: buildingData } = useSWR<BuildingList>(BackendApiUrl.getBuilding, swrFetcher);
     const { data: roomData } = useSWR<RoomList>(BackendApiUrl.getAllRoom, swrFetcher);
-    const user = session?.user as User;
-    const router = useRouter();
 
-    const openFilterModal = useCallback(() => {
-        setIsFilterOpen(true);
-    }, []);
 
-    const closeFilterModal = useCallback(() => {
-        setIsFilterOpen(false);
-    }, []);
 
     const handleBuildingSelect = (buildingId: number) => {
         setSelectedBuilding(buildingId);

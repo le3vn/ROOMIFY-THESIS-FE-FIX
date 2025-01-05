@@ -1,18 +1,14 @@
-import React, { useState, useCallback } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState } from 'react';
 import { WithDefaultLayout } from '../../components/DefautLayout';
 import { Page } from '../../types/Page';
-import { ConfigProvider, Input, Select, Button, Table, message } from 'antd';
+import { Table, message } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faPen, faPlus, faRefresh, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { useDebounce } from 'use-debounce';
-import HeaderPage from "@/components/HeaderPage";
-import { useSession } from 'next-auth/react';
-import { User } from 'next-auth';
-import router, { useRouter } from 'next/router';
+import { faPen, faPlus, faRefresh, faTrash } from '@fortawesome/free-solid-svg-icons';
+import router from 'next/router';
 import useSWR, { mutate } from 'swr';
 import { BackendApiUrl } from '@/functions/BackendApiUrl';
 import { useSwrFetcherWithAccessToken } from '@/functions/useSwrFetcherWithAccessToken';
-import BookingCards from '@/components/BookingsCard';
 import { useFetchWithAccessToken } from '@/functions/useFetchWithAccessToken';
 import ConfirmationModal from '@/components/Modals/BlockerModals/DeleteConfirmationModal';
 import SuccessModal from '@/components/Modals/BlockerModals/DeleteSuccessModal';
@@ -116,6 +112,7 @@ const Blocker: Page = () => {
             title: 'No.',
             dataIndex: 'no',
             key: 'no',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             render: (text: string, record: any, index: number) => index + 1,
         },
         {
@@ -137,6 +134,7 @@ const Blocker: Page = () => {
             title: 'Status',
             dataIndex: 'isActive',
             key: 'isActive',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             render: (text: string, record: any) => (
                 <div className='flex items-center'>
                   <div className={`${record.isActive == 'ACTIVE' ? 'bg-green-500' : 'bg-red-500'} w-4 h-4 rounded-full mr-4`}></div>
@@ -148,6 +146,7 @@ const Blocker: Page = () => {
             title: 'Action',
             dataIndex: 'id',
             key: 'id',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             render: (text: string, record: any) => (
             <div className='flex gap-4'>
                 <button className='w-8 h-8 bg-purple-950 text-white rounded-full' onClick={() => router.push(`/blocker/${record.BlockerId}`)}>

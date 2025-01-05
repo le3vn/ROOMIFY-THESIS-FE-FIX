@@ -12,7 +12,6 @@ import useSWR from 'swr';
 import { useSession } from 'next-auth/react';
 import ScheduleModal from '@/components/Modals/BookingsModals/ScheduleModal'; // Import your modal component
 import { DatePicker, Select } from 'antd';
-import moment from 'moment';
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 
@@ -32,7 +31,6 @@ interface BlockerList {
   totalData: number;
 }
 
-const { Option } = Select;
 
 const RoomPage: Page = () => {
   const router = useRouter();
@@ -80,6 +78,7 @@ const RoomPage: Page = () => {
     if (id && selectedDate && !isAvailableSelected || isAvailableSelected) {
       fetchRooms();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, selectedDate, isAvailableSelected, session.data?.user?.role]);
 
   const handleBuildingChange = (selectedId: string) => {

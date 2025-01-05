@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
 import { WithDefaultLayout } from '../../components/DefautLayout';
 import { Page } from '../../types/Page';
@@ -6,7 +7,7 @@ import useSWR, { mutate } from 'swr';
 import { User } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import { BackendApiUrl } from '@/functions/BackendApiUrl';
-import { Table, Button, Space, Tag, Modal, message } from 'antd';
+import { Table, Space, Tag, message } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useFetchWithAccessToken } from '@/functions/useFetchWithAccessToken';

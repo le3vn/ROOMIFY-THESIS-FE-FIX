@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import useSWR from 'swr';
 import { BackendApiUrl } from '@/functions/BackendApiUrl';
@@ -91,7 +92,7 @@ const ApproverCards = ({ search, sort }) => {
 
   return (
     <div className="grid grid-cols-3 gap-5 h-[530px] overflow-y-auto">
-       {approverViews?.approverViewModel.map((books, idx) => {
+       {approverViews?.approverViewModel.map((books) => {
           const userRoles = books.userRole
           console.log(userRoles);
         return(

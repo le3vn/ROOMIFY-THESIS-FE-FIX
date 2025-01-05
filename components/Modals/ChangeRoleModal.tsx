@@ -1,8 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { Button, Card } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faX } from '@fortawesome/free-solid-svg-icons';
-import { GetUserRole, UserRole } from '@/interface/GetRoleOptionInterface';
+import { GetUserRole } from '@/interface/GetRoleOptionInterface';
 import { useSession } from 'next-auth/react';
 import useSWR from 'swr';
 import { BackendApiUrl } from '@/functions/BackendApiUrl';

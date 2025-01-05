@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Button, ConfigProvider, Input, message, Select } from 'antd';
+import { ConfigProvider, Input, message, Select } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
 import { useSwrFetcherWithAccessToken } from '@/functions/useSwrFetcherWithAccessToken';
@@ -9,8 +10,6 @@ import { BackendApiUrl } from '@/functions/BackendApiUrl';
 import { WithDefaultLayout } from '@/components/DefautLayout';
 import { officeOptions, studentOrganizationOption } from '@/functions/RoleAddOptions';
 import { useFetchWithAccessToken } from '@/functions/useFetchWithAccessToken';
-import RoomConfirmationModal from '@/components/Modals/ManageModals/ManageRoomModals/AddRoomConfirm';
-import AddRoomSuccessModal from '@/components/Modals/ManageModals/ManageRoomModals/AddRoomSuccess';
 import AddRoleSuccessModal from '@/components/Modals/ManageModals/ManageRoleModal/AddRoleSuccessModal';
 import RoleConfirmationModal from '@/components/Modals/ManageModals/ManageRoleModal/AddRoleConfirm';
 
@@ -136,6 +135,7 @@ const EditRolePage = () => {
     if (roleToDelete && orgToDelete !== undefined) {
       handleDeleteRole();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roleToDelete, orgToDelete]);
 
 const handleDeleteRole = async () => {

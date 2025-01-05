@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { WithDefaultLayout } from '../../components/DefautLayout';
-import HeaderPage from '@/components/HeaderPage';
 import { Page } from '@/types/Page';
 import { BackendApiUrl } from '@/functions/BackendApiUrl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,7 +11,7 @@ import { useSession } from 'next-auth/react';
 
 const CheckInPage: Page = () => {
     const router = useRouter();
-    const { data: session } = useSession(); // To get the session or user information
+    useSession(); // To get the session or user information
     const [inputValue, setInputValue] = useState<string>(''); // State to store input value
     const [isLoading, setIsLoading] = useState(false); // To handle loading state
     const [error, setError] = useState<string | null>(null); // To handle error messages

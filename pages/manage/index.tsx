@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { WithDefaultLayout } from '../../components/DefautLayout';
@@ -15,13 +16,11 @@ import DeleteRoomConfirmationModal from '@/components/Modals/ManageModals/Manage
 import DeleteRoomSuccessModal from '@/components/Modals/ManageModals/ManageRoomModals/DeleteRoomSuccess';
 import DeleteGroupConfirmationModal from '@/components/Modals/ManageModals/ManageGroupModals/DeleteGroupConfirm';
 import DeleteGroupSuccessModal from '@/components/Modals/ManageModals/ManageGroupModals/DeleteGroupSuccess';
-import { displayName } from 'react-quill';
 import { useDebounce } from 'use-debounce';
 import { User } from 'next-auth';
 import { useSession } from 'next-auth/react';
 
 const { Panel } = Collapse;
-const { Search } = Input;
 
 export interface BuildingResponse {
   buildingList: BuildingList[],
@@ -113,12 +112,11 @@ const ManagePage: Page = () => {
   const [bookSearchTerm, setBookSearchTerm] = useState<string>('');  // State to store the search term
   const [filteredUserRoles, setFilteredUserRoles] = useState<UserRole[]>([]);  // Filtered roles data
   // Fetching the data initially
-  const { data: userRoles, error } = useSWR<UserRolesList>(
+  const { data: userRoles } = useSWR<UserRolesList>(
     BackendApiUrl.getUserRoles, 
     useSwrFetcherWithAccessToken()
   );
   const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
-  const [debouncedBookSearchTerm] = useDebounce(bookSearchTerm, 500);
 
   const { data: roomGroup } = useSWR<RoomGroups>(BackendApiUrl.getRoomGroup, useSwrFetcherWithAccessToken());
   const [, setIsDeleting] = useState(false);
@@ -495,19 +493,6 @@ const ManagePage: Page = () => {
     },
   ];
 
-  const bookingData = manageBooking?.manageBookings.map((book, index) => ({
-    key: book.bookingId, // Ensure the key is set to buildingId
-    roomId: book.roomId,
-    roomName: book.roomName,
-    bookingDescriptions: book.bookingDescription,
-    bookingDate: book.bookingDate,
-    status: book.statusName,  // Add buildingId directly to the data
-    BookingId: book.bookingId,
-    no: index + 1,
-    action: 'View',
-    userName: book.userName,
-    buildingId: book.buildingId
-  }));
 
   const filteredBookingData = manageBooking?.manageBookings.filter((book) => {
     return book.bookingDescription.toLowerCase().includes(bookSearchTerm.toLowerCase());

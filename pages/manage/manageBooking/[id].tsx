@@ -8,12 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faDownload, faEye } from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs'; // Import dayjs
 import PreviewModal from '@/components/Modals/ApproversModals/ApproveModals/PreviewModal';
-import { useSession } from 'next-auth/react';
-import { User } from 'next-auth';
 import { useFetchWithAccessToken } from '@/functions/useFetchWithAccessToken';
 import "react-quill/dist/quill.snow.css";
-import ApproveModal from '@/components/Modals/ApproversModals/ApproveModals/ApproveConfirmModal';
-import ApproveSuccessModal from '@/components/Modals/ApproversModals/ApproveModals/ApproveSuccessModal';
 import { WithDefaultLayout } from '@/components/DefautLayout';
 import UpdateModal from '@/components/Modals/ManageModals/ManageBookingModals/UpdateBookingConfirm';
 import UpdateSuccessModal from '@/components/Modals/ManageModals/ManageBookingModals/UpdateSuccessModal';
@@ -80,14 +76,7 @@ const BookingDetailPage: Page = () => {
     const [previewUrl, setPreviewUrl] = useState<string>('');
     const swrFetcher = useSwrFetcherWithAccessToken();
     const [isApproveModalOpen, setIsApproveModalOpen] = useState(false);
-    const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
-    const [isRejectSuccessModalOpen, setIsRejectSuccessModalOpen] = useState(false);
-    const [isRejectBookingConfirmationModalOpen, setIsRejectBookingConfirmationModalOpen] = useState(false); // Step 1
-    const [rejectMessage, setRejectMessage] = useState('');
-    const { data: session } = useSession();
-    const user = session?.user as User;
-    const userId = user?.id;
 
     const { fetchPOST } = useFetchWithAccessToken();
 

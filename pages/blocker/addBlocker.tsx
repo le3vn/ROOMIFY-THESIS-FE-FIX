@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { WithDefaultLayout } from '../../components/DefautLayout';
 import { Page } from '../../types/Page';
-import { Input, DatePicker, Radio, RadioChangeEvent, Select, message } from 'antd';
-import dayjs, { Dayjs } from 'dayjs'; // Import Dayjs
+import { Input, DatePicker, message } from 'antd';
+import { Dayjs } from 'dayjs'; // Import Dayjs
 import { useSwrFetcherWithAccessToken } from '@/functions/useSwrFetcherWithAccessToken';
 import { BackendApiUrl } from '@/functions/BackendApiUrl';
 import useSWR from 'swr';
@@ -15,7 +15,6 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 
 const { RangePicker } = DatePicker;
-const { Option } = Select;
 
 interface RoomData {
     roomId: number;
@@ -30,8 +29,6 @@ interface RoomList {
 const Blocker: Page = () => {
     const [startDate, setStartDate] = useState<Dayjs | null>(null);
     const [endDate, setEndDate] = useState<Dayjs | null>(null);
-    const [choice, setChoice] = useState(0);
-    const [selectedRooms, setSelectedRooms] = useState<number[]>([]);
     const [blockerName, setBlockerName] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isSuccesModalOpen, setIsSuccessModalOpen] = useState(false);
@@ -39,11 +36,8 @@ const Blocker: Page = () => {
     
     const swrFetcher = useSwrFetcherWithAccessToken();
     const { fetchPOSTWithFormData } = useFetchWithAccessToken();
-    const { data: roomData } = useSWR<RoomList>(BackendApiUrl.getAllRoom, swrFetcher);
+    useSWR<RoomList>(BackendApiUrl.getAllRoom, swrFetcher);
 
-    const onChange = (e: RadioChangeEvent) => {
-        setChoice(e.target.value);
-    };
 
     const handleBlockerNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setBlockerName(e.target.value); // Update blockerName state with input value

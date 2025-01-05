@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Button, Input, Select, Upload, message } from 'antd';
+import { Input, Select } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUpload, faTimes, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -11,7 +11,6 @@ import { useFetchWithAccessToken } from '@/functions/useFetchWithAccessToken';
 import { useSwrFetcherWithAccessToken } from '@/functions/useSwrFetcherWithAccessToken';
 import useSWR from 'swr';
 import { WithDefaultLayout } from '@/components/DefautLayout';
-import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import EditRoomSuccessModal from '@/components/Modals/ManageModals/ManageRoomModals/EditRoomSuccess';
 import EditRoomConfirmationModal from '@/components/Modals/ManageModals/ManageRoomModals/EditRoomConfirm';
@@ -50,12 +49,9 @@ const EditRoomPage = () => {
 
   const { data: group } = useSWR<GroupDetail>(`${BackendApiUrl.getGroupDetail}?id=${id}`, fetcher);
 
-  const { handleSubmit, control, setValue, reset } = useForm<z.infer<typeof roomSchema>>({
+  const { handleSubmit, control, reset } = useForm<z.infer<typeof roomSchema>>({
     resolver: zodResolver(roomSchema),
   });
-
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [fileName, setFileName] = useState<string>('');
 
   const [isConfirmationModalVisible, setConfirmationModalVisible] = useState(false);
   const [isSuccessModalVisible, setSuccessModalVisible] = useState(false);
