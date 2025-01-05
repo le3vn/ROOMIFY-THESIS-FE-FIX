@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Input, Select, Upload, message } from 'antd';
@@ -13,7 +14,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import EditRoomSuccessModal from '@/components/Modals/ManageModals/ManageRoomModals/EditRoomSuccess';
 import EditRoomConfirmationModal from '@/components/Modals/ManageModals/ManageRoomModals/EditRoomConfirm';
-import { GroupList, UserList } from '.';
+import { GroupList } from '.';
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_FILE_TYPES = ['image/jpeg', 'image/png', 'image/gif'];
