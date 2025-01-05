@@ -10,8 +10,6 @@ import { useFetchWithAccessToken } from '@/functions/useFetchWithAccessToken';
 import { useSwrFetcherWithAccessToken } from '@/functions/useSwrFetcherWithAccessToken';
 import useSWR from 'swr';
 import { WithDefaultLayout } from '@/components/DefautLayout';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import EditRoomSuccessModal from '@/components/Modals/ManageModals/ManageRoomModals/EditRoomSuccess';
 import EditRoomConfirmationModal from '@/components/Modals/ManageModals/ManageRoomModals/EditRoomConfirm';
 import { GroupList } from '.';
@@ -210,10 +208,9 @@ const EditRoomPage = () => {
               name="Description"
               control={control}
               render={({ field }) => (
-                <ReactQuill
+                <textarea
                   {...field}
                   className="bg-white"
-                  theme="snow"
                 />
               )}
             />

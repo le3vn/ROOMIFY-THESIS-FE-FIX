@@ -8,8 +8,6 @@ import { BackendApiUrl } from '@/functions/BackendApiUrl';
 import { WithDefaultLayout } from '@/components/DefautLayout';
 import useSWR from 'swr';
 import { useSwrFetcherWithAccessToken } from '@/functions/useSwrFetcherWithAccessToken';
-import ReactQuill from 'react-quill';  // Import ReactQuill
-import 'react-quill/dist/quill.snow.css';  // Import Quill styles
 import RoomConfirmationModal from '@/components/Modals/ManageModals/ManageRoomModals/AddRoomConfirm';
 import AddRoomSuccessModal from '@/components/Modals/ManageModals/ManageRoomModals/AddRoomSuccess';
 
@@ -181,26 +179,13 @@ const AddRoomPage = () => {
         {/* Description - React Quill Editor */}
         <div>
           <p className="text-white font-normal text-base mb-2">Description</p>
-          <ReactQuill
+          <Input.TextArea
             value={formData.description}
-            onChange={handleDescriptionChange}
+            onChange={(e) => handleDescriptionChange(e.target.value)}
             placeholder="Enter room description (max 250 characters)"
-            className='bg-white'
-            modules={{
-              toolbar: [
-                [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                ['bold', 'italic', 'underline'],
-                ['link'],
-                ['blockquote'],
-                [{ 'align': [] }],
-                [{ 'color': [] }, { 'background': [] }],
-                [{ 'indent': '-1'}, { 'indent': '+1' }],
-                [{ 'direction': 'rtl' }],
-                ['clean'],
-              ],
-            }}
-            theme="snow"
+            maxLength={250}
+            className="w-full mb-3 rounded-md"
+            rows={4}
           />
         </div>
 
