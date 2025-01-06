@@ -11,7 +11,6 @@ import { useFetchWithAccessToken } from '@/functions/useFetchWithAccessToken';
 import { useSwrFetcherWithAccessToken } from '@/functions/useSwrFetcherWithAccessToken';
 import useSWR from 'swr';
 import { WithDefaultLayout } from '@/components/DefautLayout';
-import 'react-quill/dist/quill.snow.css';
 import EditRoomSuccessModal from '@/components/Modals/ManageModals/ManageRoomModals/EditRoomSuccess';
 import EditRoomConfirmationModal from '@/components/Modals/ManageModals/ManageRoomModals/EditRoomConfirm';
 

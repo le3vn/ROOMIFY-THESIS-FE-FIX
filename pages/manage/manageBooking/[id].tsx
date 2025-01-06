@@ -9,7 +9,6 @@ import { faChevronLeft, faDownload, faEye } from '@fortawesome/free-solid-svg-ic
 import dayjs from 'dayjs'; // Import dayjs
 import PreviewModal from '@/components/Modals/ApproversModals/ApproveModals/PreviewModal';
 import { useFetchWithAccessToken } from '@/functions/useFetchWithAccessToken';
-import "react-quill/dist/quill.snow.css";
 import { WithDefaultLayout } from '@/components/DefautLayout';
 import UpdateModal from '@/components/Modals/ManageModals/ManageBookingModals/UpdateBookingConfirm';
 import UpdateSuccessModal from '@/components/Modals/ManageModals/ManageBookingModals/UpdateSuccessModal';

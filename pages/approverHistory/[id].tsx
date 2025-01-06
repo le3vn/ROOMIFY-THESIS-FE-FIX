@@ -11,7 +11,6 @@ import dayjs from 'dayjs'; // Import dayjs
 import PreviewModal from '@/components/Modals/ApproversModals/ApproveModals/PreviewModal';
 import { useSession } from 'next-auth/react';
 import { User } from 'next-auth';
-import "react-quill/dist/quill.snow.css";
 import RejectMessageModal from '@/components/Modals/ApproversModals/RejectModals/RejectMessageModal';
 
 

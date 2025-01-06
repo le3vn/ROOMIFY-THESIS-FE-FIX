@@ -12,7 +12,6 @@ import PreviewModal from '@/components/Modals/ApproversModals/ApproveModals/Prev
 import { useSession } from 'next-auth/react';
 import { User } from 'next-auth';
 import { useFetchWithAccessToken } from '@/functions/useFetchWithAccessToken';
-import "react-quill/dist/quill.snow.css";
 import ApproveModal from '@/components/Modals/ApproversModals/ApproveModals/ApproveConfirmModal';
 import ApproveSuccessModal from '@/components/Modals/ApproversModals/ApproveModals/ApproveSuccessModal';
 import RejectModal from '@/components/Modals/ApproversModals/RejectModals/RejectMessageInputModal';
